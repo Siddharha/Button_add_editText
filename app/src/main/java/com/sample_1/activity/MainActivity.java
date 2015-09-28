@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.sample_1.R;
@@ -22,14 +23,15 @@ public class MainActivity extends AppCompatActivity {
     private int i;
     private RecyclerView R_View;
     private mListAdapter mlistAdapter;
+    private Button btn_del;
     List<Items> list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initialize();
-
     }
+
 
 
     private void initialize() {
@@ -38,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         R_View = (RecyclerView)findViewById(R.id.R_View);
         R_View.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         mlistAdapter = new mListAdapter(list,R.layout.list_layout);
-
+        btn_del = (Button)findViewById(R.id.btn_del);
     }
 
     public void clk_it(View view)
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
             Items items = new Items();
             items.setNames(String.valueOf(i));
             list.add(items);
+
         }
         else if(view.getTag().toString().equals("-"))
         {
@@ -66,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toast.makeText(getBaseContext(),String.valueOf(i),Toast.LENGTH_SHORT).show();
         R_View.setAdapter(mlistAdapter);
+
         mlistAdapter.notifyDataSetChanged();
       //  finish();
         //startActivity(new Intent(this,MainActivity.class));
