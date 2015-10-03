@@ -2,10 +2,12 @@ package com.sample_1.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,7 @@ public class mListAdapter extends  RecyclerView.Adapter<mListAdapter.ViewHolder>
     private List<Items> items;
     private int itemLayout;
     Button btn_del;
+
     View v;
 
     public mListAdapter(List<Items> items, int itemLayout) {
@@ -44,9 +47,16 @@ public class mListAdapter extends  RecyclerView.Adapter<mListAdapter.ViewHolder>
         btn_del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(v.getContext(), "Working!!", Toast.LENGTH_SHORT).show();
+
+
+                MainActivity mainActivity = new MainActivity();
+               String p = mainActivity.txt_entry.getText().toString();
+
+                Log.e("P:",p);
             }
         });
+
+
         viewHolder.itemView.setTag(item);
     }
 

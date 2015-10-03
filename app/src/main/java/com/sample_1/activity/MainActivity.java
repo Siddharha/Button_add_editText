@@ -5,10 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.sample_1.R;
@@ -24,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView R_View;
     private mListAdapter mlistAdapter;
     private Button btn_del;
-    List<Items> list;
+    public EditText txt_entry;
+    List<Items> list,Values;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,11 +39,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void initialize() {
         i = 0;
+        txt_entry = (EditText)findViewById(R.id.txt_entry);
         list = new ArrayList<>();
         R_View = (RecyclerView)findViewById(R.id.R_View);
         R_View.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         mlistAdapter = new mListAdapter(list,R.layout.list_layout);
         btn_del = (Button)findViewById(R.id.btn_del);
+        Values = new ArrayList<>();
+
     }
 
     public void clk_it(View view)
@@ -51,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
             Items items = new Items();
             items.setNames(String.valueOf(i));
             list.add(items);
-
         }
         else if(view.getTag().toString().equals("-"))
         {
